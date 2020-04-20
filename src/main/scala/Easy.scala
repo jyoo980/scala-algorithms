@@ -1,4 +1,5 @@
 object Easy {
+  
   // https://leetcode.com/problems/number-of-segments-in-a-string/
   def countSegments(s: String): Int =
     s.split(" ").collect {
@@ -44,4 +45,17 @@ object Easy {
   // https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/
   def smallerNumbersThanCurrent(nums: Array[Int]): List[Int] =
     nums.map(n => nums.count(_ < n)).toList
+
+  // https://leetcode.com/problems/decompress-run-length-encoded-list/
+  def decompressRLE(nums: Array[Int]): Array[Int] = {
+    def toPairs(xs: Array[Int]): List[(Int, Int)] = {
+      xs.toList.grouped(2).map {
+        case List(x, y) => (x, y)
+        case _ => sys.error(s"Uneven length list: $xs")
+      }.toList
+    }
+    toPairs(nums).flatMap {
+      case (freq, n) => (1 to freq).map(_ => n)
+    }.toArray
+  }
 }

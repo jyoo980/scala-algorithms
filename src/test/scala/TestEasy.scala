@@ -81,4 +81,17 @@ class TestEasy extends FunSpec {
       assert(Easy.smallerNumbersThanCurrent(nums) == List(2, 1, 0, 3))
     }
   }
+
+  describe("Easy::decompressRLE") {
+
+    it("should work for an inefficient representation") {
+      val nums = Array(1, 1, 1, 2, 1, 3)
+      assert(Easy.decompressRLE(nums).sameElements(Array(1, 2, 3)))
+    }
+
+    it("should work for an efficient representation") {
+      val nums = Array(3, 1, 2, 5)
+      assert(Easy.decompressRLE(nums).sameElements(Array(1, 1, 1, 5, 5)))
+    }
+  }
 }
