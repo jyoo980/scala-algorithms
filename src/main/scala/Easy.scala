@@ -28,4 +28,20 @@ object Easy {
         (i, diffMap.get(n).fold(-1)(j => j))
     }
   }
+
+  // https://leetcode.com/problems/find-lucky-integer-in-an-array/
+  def findLucky(nums: Array[Int]): Int = {
+    val numFreq = nums.foldLeft(Map[Int, Int]()) { (acc, n) =>
+      acc + (n -> (acc.getOrElse(n, 0) + 1))
+    }
+    val luckyNumbers = nums.collect {
+      case n if numFreq.getOrElse(n, -1) == n => n
+    }
+    if (luckyNumbers.nonEmpty) luckyNumbers.max
+    else -1
+  }
+
+  // https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/
+  def smallerNumbersThanCurrent(nums: Array[Int]): List[Int] =
+    nums.map(n => nums.count(_ < n)).toList
 }

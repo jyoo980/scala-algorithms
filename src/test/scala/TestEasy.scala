@@ -50,4 +50,35 @@ class TestEasy extends FunSpec {
       })
     }
   }
+
+  describe("Easy::findLucky") {
+
+    it("should evaluate to -1 if there is no lucky number") {
+      val nums = Array(0)
+      assert(Easy.findLucky(nums) == -1)
+    }
+
+    it("should evaluate to a correct lucky number") {
+      val nums = Array(2, 2, 3, 4)
+      assert(Easy.findLucky(nums) == 2)
+    }
+
+    it("should evaluate to the largest lucky number if there are more than one") {
+      val nums = Array(1, 2, 2, 3, 3, 3)
+      assert(Easy.findLucky(nums) == 3)
+    }
+  }
+
+  describe("Easy::smallerNumbersThanCurrent") {
+
+    it("should evaluate to an array of 0 given an array of the same numbers") {
+      val nums = Array(1, 1, 1, 1, 1)
+      assert(Easy.smallerNumbersThanCurrent(nums) == List(0, 0, 0, 0, 0))
+    }
+
+    it("should work for the general case") {
+      val nums = Array(6, 5, 4, 8)
+      assert(Easy.smallerNumbersThanCurrent(nums) == List(2, 1, 0, 3))
+    }
+  }
 }
