@@ -34,4 +34,15 @@ class TestMedium extends FunSpec {
       assert(Medium.reverseWords("the sky is blue") == "blue is sky the")
     }
   }
+
+  describe("Medium::countBits") {
+
+    it("should handle a range of a single number") {
+      assert(Medium.countBits(0).sameElements(Array(0)))
+    }
+
+    it("should handle a range of more than one number") {
+      assert(Medium.countBits(3).sameElements(Array(0, 1, 1, 2)))
+    }
+  }
 }

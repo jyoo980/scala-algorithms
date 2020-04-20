@@ -24,4 +24,11 @@ object Medium {
       }.mkString(" ")
   }
 
+  // https://leetcode.com/problems/counting-bits/
+  def countBits(num: Int): Array[Int] = {
+    def countOnes(n: Int): Int =
+      n.toBinaryString.map(_.asDigit).sum
+    (0 to num).map(countOnes).toArray
+  }
+
 }
