@@ -31,4 +31,13 @@ object Medium {
     (0 to num).map(countOnes).toArray
   }
 
+  // https://leetcode.com/problems/sort-characters-by-frequency/
+  def frequencySort(s: String): String =
+    s.foldLeft(Map[Char, Int]()) { (acc, c) =>
+      acc + (c -> (acc.getOrElse(c, 0) + 1))
+    }.toList.sortBy {
+      case (_, freq) => freq
+    }(Ordering[Int].reverse).flatMap {
+      case (c, freq) => (1 to freq).map(_ => c)
+    }.mkString("")
 }

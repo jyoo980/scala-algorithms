@@ -45,4 +45,19 @@ class TestMedium extends FunSpec {
       assert(Medium.countBits(3).sameElements(Array(0, 1, 1, 2)))
     }
   }
+
+  describe("Medium::frequencySort") {
+
+    it("should evaluate for strings that have the same sorted result") {
+      assert(Medium.frequencySort("cccaaa") == "cccaaa")
+    }
+
+    it("should evaluate for case-sensitive strings") {
+      assert(Medium.frequencySort("Aabb") == "bbAa")
+    }
+
+    it("should evaluate for a default case") {
+      assert(Medium.frequencySort("tree") == "eetr")
+    }
+  }
 }
