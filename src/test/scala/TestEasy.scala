@@ -94,4 +94,32 @@ class TestEasy extends FunSpec {
       assert(Easy.decompressRLE(nums).sameElements(Array(1, 1, 1, 5, 5)))
     }
   }
+
+  describe("Easy::addDigits") {
+
+    it("should work for the base case") {
+      val num = 1
+      assert(Easy.addDigits(num) == 1)
+    }
+
+    it("should work for two-step numbers") {
+      val num = 38
+      assert(Easy.addDigits(num) == 2)
+    }
+  }
+
+  describe("Easy::firstUniqueChar") {
+
+    it("should work for a string with one character") {
+      assert(Easy.firstUniqueChar("h") == 0)
+    }
+
+    it("should evaluate to -1 if there are no unique characters") {
+      assert(Easy.firstUniqueChar("aa") == -1)
+    }
+
+    it("should evaluate to the index of a unique character") {
+      assert(Easy.firstUniqueChar("loveleetcode") == 2)
+    }
+  }
 }

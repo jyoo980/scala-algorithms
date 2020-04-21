@@ -1,3 +1,6 @@
+import scala.annotation.tailrec
+import scala.collection.immutable.ListMap
+
 object Easy {
 
   // https://leetcode.com/problems/number-of-segments-in-a-string/
@@ -58,4 +61,41 @@ object Easy {
       case (freq, n) => (1 to freq).map(_ => n)
     }.toArray
   }
+
+  // https://leetcode.com/problems/add-digits/
+  @tailrec
+  def addDigits(num: Int): Int = {
+    val numStr = num.toString
+    if (numStr.length == 1) num
+    else addDigits(numStr.map(_.asDigit).sum)
+  }
+
+  type IndexFreq = (Int, Int)
+
+  // https://leetcode.com/problems/first-unique-character-in-a-string/
+  def firstUniqueChar(s: String): Int = {
+    val freqMap = s.zipWithIndex.foldLeft(Map[Char, IndexFreq]())(buildFreqMap)
+    freqMap.toList.sortBy {
+      case (_, indexFreq) => indexFreq match {
+        case (i, _) => i
+      }
+    }.collectFirst {
+      case (_, indexFreq) if {
+        indexFreq match {
+          case (_, freq) => freq == 1
+        }
+      } => indexFreq match {
+        case (index, _) => index
+      }
+    }.getOrElse(-1)
+  }
+
+  private[this] def buildFreqMap(acc: Map[Char, IndexFreq], charPair: (Char, Int)): Map[Char, IndexFreq] =
+    charPair match {
+      case (c, i) =>
+        val count = acc.get(c).fold((i, 1)) {
+          case (idx , freq) => (idx, freq + 1)
+        }
+        acc + (c -> count)
+    }
 }
