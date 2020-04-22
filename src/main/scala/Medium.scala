@@ -34,7 +34,7 @@ object Medium {
       case (c, freq) => (1 to freq).map(_ => c)
     }.mkString("")
 
-  private def stringMap(s: String): Map[Char, Int] = {
+  private[this] def stringMap(s: String): Map[Char, Int] = {
     s.foldLeft(Map[Char, Int]()) { (acc, c) =>
       acc + (c -> (acc.getOrElse(c, 0) + 1))
     }

@@ -122,4 +122,22 @@ class TestEasy extends FunSpec {
       assert(Easy.firstUniqueChar("loveleetcode") == 2)
     }
   }
+
+  describe("Easy::sortArrayByParity") {
+
+    it("should work for just even numbers") {
+      val nums = (1 to 10).filter(_ % 2 == 0).toArray
+      assert(Easy.sortArrayByParity(nums).sameElements(nums))
+    }
+
+    it("should work for just odd numbers") {
+      val nums = (1 to 10).filter(_ % 2 != 0).toArray
+      assert(Easy.sortArrayByParity(nums).sameElements(nums))
+    }
+
+    it("should work for a mix of even and odd numbers") {
+      val nums = (1 to 10).toArray
+      assert(Easy.sortArrayByParity(nums).sameElements(nums.filter(_ % 2 == 0) ++ nums.filter(_ % 2 != 0)))
+    }
+  }
 }

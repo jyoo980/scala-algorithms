@@ -90,6 +90,19 @@ object Easy {
     }.getOrElse(-1)
   }
 
+  // https://leetcode.com/problems/sort-array-by-parity/
+  def sortArrayByParity(A: Array[Int]): Array[Int] = {
+    @tailrec
+    def rec(arr: List[Int], evens: List[Int], odds: List[Int]): Array[Int] =
+      arr match {
+        case Nil => (evens ++ odds).toArray
+        case h :: t =>
+          if (h % 2 == 0) rec(t, evens :+ h, odds)
+          else rec(t, evens, odds :+ h)
+      }
+    rec(A.toList, Nil, Nil)
+  }
+
   private[this] def buildFreqMap(acc: Map[Char, IndexFreq], charPair: (Char, Int)): Map[Char, IndexFreq] =
     charPair match {
       case (c, i) =>
