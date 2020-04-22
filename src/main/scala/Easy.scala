@@ -4,18 +4,14 @@ object Easy {
 
   // https://leetcode.com/problems/number-of-segments-in-a-string/
   def countSegments(s: String): Int =
-    s.split(" ").collect {
-      case seg if seg.nonEmpty => 1
-    }.sum
+    s.split(" ").count(_.nonEmpty)
 
   // https://leetcode.com/problems/find-numbers-with-even-number-of-digits/
   def findNumbers(nums: Array[Int]): Int = {
     def evenNumDigits(n: Int): Boolean = {
       n.toString.length % 2 == 0
     }
-    nums.collect {
-      case n if evenNumDigits(n) => 1
-    }.sum
+    nums.count(evenNumDigits)
   }
 
   // https://leetcode.com/problems/two-sum/
@@ -119,6 +115,20 @@ object Easy {
       n.toString.map(_.asDigit).forall(d => d != 0 && n % d == 0)
     (left to right).filter(isSelfDividing).toList
   }
+
+  def sortByBits(nums: Array[Int]): Array[Int] = {
+    def countOnes(n: Int): Int =
+      n.toBinaryString.map(_.asDigit).sum
+    nums.map(n => (n, countOnes(n)))
+      .sortBy {
+        case (n, numOnes) => (numOnes, n)
+      }
+      .map {
+        case (n, _) => n
+      }
+  }
+
+
 
   private[this] def buildFreqMap(acc: Map[Char, IndexFreq], charPair: (Char, Int)): Map[Char, IndexFreq] =
     charPair match {

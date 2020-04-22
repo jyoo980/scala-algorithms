@@ -60,4 +60,15 @@ class TestMedium extends FunSpec {
       assert(Medium.frequencySort("tree") == "eetr")
     }
   }
+
+  describe("Medium::getKth") {
+
+    it("should work for a single-element range") {
+      assert(Medium.getKth(1, 1, 1) == 1)
+    }
+
+    it("should work for a larger range of numbers") {
+      assert(Medium.getKth(7, 11, 4) == 7)
+    }
+  }
 }

@@ -163,4 +163,18 @@ class TestEasy extends FunSpec {
       assert(selfDividingNums == List(1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22))
     }
   }
+
+  describe("Easy::sortByBits") {
+
+    it("should evaluate to the same array given [10000, 10000]") {
+      assert(Easy.sortByBits(Array(10000, 10000)).sameElements(Array(10000, 10000)))
+    }
+
+    it("should evaluate for larger arrays") {
+      assert(
+        Easy.sortByBits(Array(2, 3, 5, 7, 11, 13, 17, 19))
+          .sameElements(Array(2, 3, 5, 17, 7, 11, 13, 19))
+      )
+    }
+  }
 }
