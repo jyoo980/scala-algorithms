@@ -128,7 +128,19 @@ object Easy {
       }
   }
 
-
+  // https://leetcode.com/problems/max-consecutive-ones/
+  def findMaxConsecutiveOnes(nums: Array[Int]): Int = {
+    def max(a: Int, b: Int): Int =
+      if (a > b) a else b
+    @tailrec
+    def rec(nums: List[Int], currMax: Int, onesSeen: Int): Int = nums match {
+      case Nil => max(currMax, onesSeen)
+      case h :: t =>
+        if (h == 1) rec(t, max(currMax, onesSeen + 1), onesSeen + 1)
+        else rec(t, currMax, 0)
+    }
+    rec(nums.toList, 0, 0)
+  }
 
   private[this] def buildFreqMap(acc: Map[Char, IndexFreq], charPair: (Char, Int)): Map[Char, IndexFreq] =
     charPair match {

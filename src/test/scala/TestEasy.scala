@@ -177,4 +177,15 @@ class TestEasy extends FunSpec {
       )
     }
   }
+
+  describe("Easy::findMaxConsecutiveOnes") {
+
+    it("should evaluate to 1 if there are no consecutive ones") {
+      assert(Easy.findMaxConsecutiveOnes(Array(1, 0, 1, 0)) == 1)
+    }
+
+    it("should work for a valid case") {
+      assert(Easy.findMaxConsecutiveOnes(Array(1, 1, 0, 1, 1, 1)) == 3)
+    }
+  }
 }
