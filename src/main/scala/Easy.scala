@@ -1,5 +1,4 @@
 import scala.annotation.tailrec
-import scala.collection.immutable.ListMap
 
 object Easy {
 
@@ -101,6 +100,24 @@ object Easy {
           else rec(t, evens, odds :+ h)
       }
     rec(A.toList, Nil, Nil)
+  }
+
+  // https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/
+  def replaceElements(arr: Array[Int]): Array[Int] = {
+    val arrWithIndex = arr.zipWithIndex
+    arrWithIndex.map {
+      case (_, i) =>
+        val rightArr = arr.takeRight(arr.length - i - 1)
+        if (rightArr.nonEmpty) rightArr.toList.max
+        else -1
+    }
+  }
+
+  // https://leetcode.com/problems/self-dividing-numbers/
+  def selfDividingNumbers(left: Int, right: Int): List[Int] = {
+    def isSelfDividing(n: Int): Boolean =
+      n.toString.map(_.asDigit).forall(d => d != 0 && n % d == 0)
+    (left to right).filter(isSelfDividing).toList
   }
 
   private[this] def buildFreqMap(acc: Map[Char, IndexFreq], charPair: (Char, Int)): Map[Char, IndexFreq] =

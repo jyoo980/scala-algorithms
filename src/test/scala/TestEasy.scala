@@ -140,4 +140,27 @@ class TestEasy extends FunSpec {
       assert(Easy.sortArrayByParity(nums).sameElements(nums.filter(_ % 2 == 0) ++ nums.filter(_ % 2 != 0)))
     }
   }
+
+  describe("Easy::replaceElements") {
+
+    it("should maintain the same array with itself") {
+      assert(Easy.replaceElements(Array(2)).sameElements(Array(-1)))
+    }
+
+    it("should replace elements for a longer array") {
+      assert(Easy.replaceElements(Array(17, 18, 5, 4, 6, 1)).sameElements(Array(18, 6, 6, 6, 1, -1)))
+    }
+  }
+
+  describe("Easy::selfDividingNumbers") {
+
+    it("should reject 0 as a self diving number") {
+      assert(Easy.selfDividingNumbers(0, 1) == List(1))
+    }
+
+    it("should evaluate to a range of valid self-dividing numbers from 1 to 22") {
+      val selfDividingNums = Easy.selfDividingNumbers(1, 22)
+      assert(selfDividingNums == List(1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22))
+    }
+  }
 }
