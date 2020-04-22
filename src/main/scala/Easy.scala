@@ -142,6 +142,15 @@ object Easy {
     rec(nums.toList, 0, 0)
   }
 
+  // https://leetcode.com/problems/fibonacci-number/
+  def fib(n: Int): Int = {
+    @tailrec
+    def rec(n: Int, prev: Int, curr: Int): Int =
+      if (n == 0) prev
+      else rec(n - 1, curr, prev + curr)
+    rec(n, 0 ,1)
+  }
+
   private[this] def buildFreqMap(acc: Map[Char, IndexFreq], charPair: (Char, Int)): Map[Char, IndexFreq] =
     charPair match {
       case (c, i) =>

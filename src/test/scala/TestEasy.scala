@@ -188,4 +188,15 @@ class TestEasy extends FunSpec {
       assert(Easy.findMaxConsecutiveOnes(Array(1, 1, 0, 1, 1, 1)) == 3)
     }
   }
+
+  describe("Easy::fib") {
+
+    it("should work for a single number") {
+      assert(Easy.fib(0) == 0)
+    }
+
+    it("should work for a range of numbers") {
+      assert((0 to 10).map(Easy.fib) == List(0, 1, 1,	2, 3, 5, 8, 13, 21, 34, 55))
+    }
+  }
 }
