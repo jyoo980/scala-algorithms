@@ -162,6 +162,13 @@ object Easy {
     if (num != 0) (1 until num).filter(num % _ == 0).sum == num
     else false
 
+  // https://leetcode.com/problems/majority-element/
+  def majorityElement(nums: Array[Int]): Int =
+    nums.foldLeft(Map[Int, Int]())(counts)
+      .collectFirst {
+        case (n, freq) if freq > nums.length.toDouble / 2 => n
+      }.getOrElse(-1)
+
   private[this] def buildFreqMap(acc: Map[Char, IndexFreq], charPair: (Char, Int)): Map[Char, IndexFreq] =
     charPair match {
       case (c, i) =>

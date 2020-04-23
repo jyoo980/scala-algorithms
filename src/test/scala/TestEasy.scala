@@ -226,4 +226,15 @@ class TestEasy extends FunSpec {
       assert(!Easy.checkPerfectNumber(0))
     }
   }
+
+  describe("Easy::majorityElement") {
+
+    it("should evaluate for a simple case") {
+      assert(Easy.majorityElement(Array(3, 2, 3)) == 3)
+    }
+
+    it("should evaluate for complex cases") {
+      assert(Easy.majorityElement(Array(2, 2, 1, 1, 1, 2, 2)) == 2)
+    }
+  }
 }
