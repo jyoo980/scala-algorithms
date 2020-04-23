@@ -51,6 +51,22 @@ object Medium {
     }
   }
 
+  // https://leetcode.com/problems/k-closest-points-to-origin/
+  def kClosest(pts: Array[Array[Int]], k: Int): Array[Array[Int]] = {
+    def distToOrigin(pt: Array[Int]): Double = {
+      val x2 = pt(0) * pt(0)
+      val y2 = pt(1) * pt(1)
+      Math.sqrt(x2 + y2)
+    }
+    pts.map(pt => (pt, distToOrigin(pt)))
+      .sortBy {
+        case (_, d) => d
+      }
+      .map {
+        case (pt, _) => pt
+      }.take(k)
+  }
+
   private[this] def stringMap(s: String): Map[Char, Int] = {
     s.foldLeft(Map[Char, Int]()) { (acc, c) =>
       acc + (c -> (acc.getOrElse(c, 0) + 1))
