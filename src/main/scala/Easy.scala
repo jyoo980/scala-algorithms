@@ -157,6 +157,11 @@ object Easy {
     occurrences.length == uniqueOccurrences.size
   }
 
+  // https://leetcode.com/problems/perfect-number/
+  def checkPerfectNumber(num: Int): Boolean =
+    if (num != 0) (1 until num).filter(num % _ == 0).sum == num
+    else false
+
   private[this] def buildFreqMap(acc: Map[Char, IndexFreq], charPair: (Char, Int)): Map[Char, IndexFreq] =
     charPair match {
       case (c, i) =>

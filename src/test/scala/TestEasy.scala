@@ -211,4 +211,19 @@ class TestEasy extends FunSpec {
       assert(Easy.uniqueOccurrences(arr))
     }
   }
+
+  describe("Easy::checkPerfectNumber") {
+
+    it("should evaluate to false in the base case") {
+      assert(!Easy.checkPerfectNumber(1))
+    }
+
+    it("should evaluate to true for a more complex case") {
+      assert(Easy.checkPerfectNumber(28))
+    }
+
+    it("should evaluate to false given 0") {
+      assert(!Easy.checkPerfectNumber(0))
+    }
+  }
 }
