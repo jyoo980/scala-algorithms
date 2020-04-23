@@ -199,4 +199,16 @@ class TestEasy extends FunSpec {
       assert((0 to 10).map(Easy.fib) == List(0, 1, 1,	2, 3, 5, 8, 13, 21, 34, 55))
     }
   }
+
+  describe("Easy::uniqueOccurrences") {
+
+    it("should evaluate to false if there are no unique occurrences") {
+      assert(!Easy.uniqueOccurrences(Array(1, 2, 1, 2)))
+    }
+
+    it("should evaluate to true if each array element has a unique occurrence") {
+      val arr = Array(1, 1, 2, 2, 2, 3, 3, 3, 3)
+      assert(Easy.uniqueOccurrences(arr))
+    }
+  }
 }
