@@ -30,9 +30,7 @@ object Easy {
 
   // https://leetcode.com/problems/find-lucky-integer-in-an-array/
   def findLucky(nums: Array[Int]): Int = {
-    val numFreq = nums.foldLeft(Map[Int, Int]()) { (acc, n) =>
-      acc + (n -> (acc.getOrElse(n, 0) + 1))
-    }
+    val numFreq = nums.foldLeft(Map[Int, Int]())(counts)
     val luckyNumbers = nums.collect {
       case n if numFreq.getOrElse(n, -1) == n => n
     }
@@ -151,6 +149,14 @@ object Easy {
     rec(n, 0 ,1)
   }
 
+  // https://leetcode.com/problems/unique-number-of-occurrences/
+  def uniqueOccurrences(nums: Array[Int]): Boolean = {
+    val freq = nums.foldLeft(Map[Int, Int]())(counts)
+    val occurrences = freq.values.toList
+    val uniqueOccurrences = occurrences.toSet
+    occurrences.length == uniqueOccurrences.size
+  }
+
   private[this] def buildFreqMap(acc: Map[Char, IndexFreq], charPair: (Char, Int)): Map[Char, IndexFreq] =
     charPair match {
       case (c, i) =>
@@ -159,4 +165,7 @@ object Easy {
         }
         acc + (c -> count)
     }
+
+  private[this] def counts(acc: Map[Int, Int], n: Int): Map[Int, Int] =
+    acc + (n -> (acc.getOrElse(n, 0) + 1))
 }
