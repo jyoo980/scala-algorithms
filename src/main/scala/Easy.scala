@@ -201,6 +201,14 @@ object Easy {
   def sortedSquares(A: Array[Int]): Array[Int] =
     A.map(n => n * n).sorted
 
+  // https://leetcode.com/problems/detect-capital/
+  def detectCapitalUse(word: String): Boolean = {
+    if (word.length < 1) false
+    else word(0).isUpper ||
+      word.forall(_.isLower) ||
+      word.forall(_.isUpper)
+  }
+
   private[this] def buildFreqMap(acc: Map[Char, IndexFreq], charPair: (Char, Int)): Map[Char, IndexFreq] =
     charPair match {
       case (c, i) =>

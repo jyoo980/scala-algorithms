@@ -281,4 +281,19 @@ class TestEasy extends FunSpec {
       assert(Easy.sortedSquares(Array(-7, -3, 2, 3, 11)).sameElements(Array(4, 9, 9, 49, 121)))
     }
   }
+
+  describe("Easy::detectCapitalUse") {
+
+    it("should work for all caps") {
+      assert(Easy.detectCapitalUse("UK"))
+    }
+
+    it("should work for all lowercase") {
+      assert(Easy.detectCapitalUse("helloworld"))
+    }
+
+    it("should work for first character being capitalized") {
+      assert(Easy.detectCapitalUse("Google"))
+    }
+  }
 }
