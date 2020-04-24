@@ -178,6 +178,18 @@ object Easy {
     rec(n, 0)
   }
 
+  def intersect(nums1: Array[Int], nums2: Array[Int]): Array[Int] = {
+    val num1Freq = nums1.foldLeft(Map[Int, Int]())(counts)
+    val num2Freq = nums2.foldLeft(Map[Int, Int]())(counts)
+    num1Freq.filter {
+      case (n, _) => num2Freq.contains(n)
+    }.flatMap {
+      case (n, freqInFirst) =>
+        val commonFreq = Math.min(freqInFirst, num2Freq.getOrElse(n, freqInFirst))
+        (1 to commonFreq).map(_ => n)
+    }.toArray
+  }
+
   private[this] def buildFreqMap(acc: Map[Char, IndexFreq], charPair: (Char, Int)): Map[Char, IndexFreq] =
     charPair match {
       case (c, i) =>

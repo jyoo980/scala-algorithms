@@ -248,4 +248,15 @@ class TestEasy extends FunSpec {
       assert(Easy.numberOfSteps(3) == 3)
     }
   }
+
+  describe("Easy::intersection") {
+
+    it("should evaluate to the minimum of two arrays") {
+      assert(Easy.intersect(Array(1, 2, 2, 1), Array(2, 2)).sameElements(Array(2, 2)))
+    }
+
+    it("should evaluate for more complex arrays") {
+      assert(Easy.intersect(Array(4, 9, 5), Array(9, 4, 9, 8, 4)).sameElements(Array(4, 9)))
+    }
+  }
 }
