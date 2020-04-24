@@ -178,6 +178,7 @@ object Easy {
     rec(n, 0)
   }
 
+  // https://leetcode.com/problems/intersection-of-two-arrays-ii/
   def intersect(nums1: Array[Int], nums2: Array[Int]): Array[Int] = {
     val num1Freq = nums1.foldLeft(Map[Int, Int]())(counts)
     val num2Freq = nums2.foldLeft(Map[Int, Int]())(counts)
@@ -189,6 +190,12 @@ object Easy {
         (1 to commonFreq).map(_ => n)
     }.toArray
   }
+
+  // https://leetcode.com/problems/string-matching-in-an-array/
+  def stringMatching(words: Array[String]): List[String] =
+    words.filter { prefix =>
+      words.exists(word => word.contains(prefix) && word != prefix)
+    }.toList
 
   private[this] def buildFreqMap(acc: Map[Char, IndexFreq], charPair: (Char, Int)): Map[Char, IndexFreq] =
     charPair match {

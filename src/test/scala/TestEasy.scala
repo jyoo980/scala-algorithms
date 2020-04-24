@@ -259,4 +259,15 @@ class TestEasy extends FunSpec {
       assert(Easy.intersect(Array(4, 9, 5), Array(9, 4, 9, 8, 4)).sameElements(Array(4, 9)))
     }
   }
+
+  describe("Easy::stringMatching") {
+
+    it("should evaluate to an empty array for the base case (no prefixes)") {
+      assert(Easy.stringMatching(Array("blue", "green", "bu")).isEmpty)
+    }
+
+    it("should work for larger arrays") {
+      assert(Easy.stringMatching(Array("mass", "as", "hero", "superhero")) == List("as", "hero"))
+    }
+  }
 }
