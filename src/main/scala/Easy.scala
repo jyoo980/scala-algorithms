@@ -197,6 +197,10 @@ object Easy {
       words.exists(word => word.contains(prefix) && word != prefix)
     }.toList
 
+  // https://leetcode.com/problems/squares-of-a-sorted-array/
+  def sortedSquares(A: Array[Int]): Array[Int] =
+    A.map(n => n * n).sorted
+
   private[this] def buildFreqMap(acc: Map[Char, IndexFreq], charPair: (Char, Int)): Map[Char, IndexFreq] =
     charPair match {
       case (c, i) =>

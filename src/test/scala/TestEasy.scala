@@ -270,4 +270,15 @@ class TestEasy extends FunSpec {
       assert(Easy.stringMatching(Array("mass", "as", "hero", "superhero")) == List("as", "hero"))
     }
   }
+
+  describe("Easy::sortedSquares") {
+
+    it("should work for cases where all squares are unique") {
+      assert(Easy.sortedSquares(Array(-4, -1, 0, 3, 10)).sameElements(Array(0, 1, 9, 16, 100)))
+    }
+
+    it("should work for cases where not all squares are unique") {
+      assert(Easy.sortedSquares(Array(-7, -3, 2, 3, 11)).sameElements(Array(4, 9, 9, 49, 121)))
+    }
+  }
 }
