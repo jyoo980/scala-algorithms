@@ -169,6 +169,15 @@ object Easy {
         case (n, freq) if freq > nums.length.toDouble / 2 => n
       }.getOrElse(-1)
 
+  // https://leetcode.com/problems/number-of-steps-to-reduce-a-number-to-zero/
+  def numberOfSteps(n: Int): Int = {
+    @tailrec
+    def rec(n: Int, steps: Int): Int =
+      if (n == 0) steps
+      else rec(if (n % 2 == 0) n / 2 else n - 1, steps + 1)
+    rec(n, 0)
+  }
+
   private[this] def buildFreqMap(acc: Map[Char, IndexFreq], charPair: (Char, Int)): Map[Char, IndexFreq] =
     charPair match {
       case (c, i) =>

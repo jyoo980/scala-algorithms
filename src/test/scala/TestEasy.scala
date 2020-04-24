@@ -237,4 +237,15 @@ class TestEasy extends FunSpec {
       assert(Easy.majorityElement(Array(2, 2, 1, 1, 1, 2, 2)) == 2)
     }
   }
+
+  describe("Easy::numberOfSteps") {
+
+    it("should evaluate for the base case") {
+      assert(Easy.numberOfSteps(0) == 0)
+    }
+
+    it("should evaluate for a simple case") {
+      assert(Easy.numberOfSteps(3) == 3)
+    }
+  }
 }
