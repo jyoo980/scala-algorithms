@@ -204,9 +204,17 @@ object Easy {
   // https://leetcode.com/problems/detect-capital/
   def detectCapitalUse(word: String): Boolean = {
     if (word.length < 1) false
-    else word(0).isUpper ||
-      word.forall(_.isLower) ||
-      word.forall(_.isUpper)
+    else if (word(0).isUpper) {
+      word.substring(1).forall(_.isLower) || word.forall(_.isUpper)
+    } else {
+      word.forall(_.isLower)
+    }
+  }
+
+  // https://leetcode.com/problems/find-the-difference/
+  def findTheDifference(s: String, t: String): Char = {
+    t.toSet.diff(s.toSet).headOption
+      .fold(sys.error(s"$s and $t are identical"))(c => c)
   }
 
   private[this] def buildFreqMap(acc: Map[Char, IndexFreq], charPair: (Char, Int)): Map[Char, IndexFreq] =

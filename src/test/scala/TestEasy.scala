@@ -295,5 +295,21 @@ class TestEasy extends FunSpec {
     it("should work for first character being capitalized") {
       assert(Easy.detectCapitalUse("Google"))
     }
+
+    it("should fail for the first character being capitalized with other caps") {
+      val faultyStr = "GooGle"
+      assert(!Easy.detectCapitalUse(faultyStr))
+    }
+  }
+
+  describe("Easy::findTheDifference") {
+
+    it("should work for the base case") {
+      assert(Easy.findTheDifference("", "a") == 'a')
+    }
+
+    it("should work when the strings are nearly identical") {
+      assert(Easy.findTheDifference("abc", "abcd") == 'd')
+    }
   }
 }
