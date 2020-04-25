@@ -311,5 +311,9 @@ class TestEasy extends FunSpec {
     it("should work when the strings are nearly identical") {
       assert(Easy.findTheDifference("abc", "abcd") == 'd')
     }
+
+    it("should work for edge cases") {
+      assert(Easy.findTheDifference("s", "ss") == 's')
+    }
   }
 }

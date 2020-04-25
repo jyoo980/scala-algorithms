@@ -213,8 +213,13 @@ object Easy {
 
   // https://leetcode.com/problems/find-the-difference/
   def findTheDifference(s: String, t: String): Char = {
-    t.toSet.diff(s.toSet).headOption
-      .fold(sys.error(s"$s and $t are identical"))(c => c)
+    def charFreq(acc: Map[Char, Int], c: Char): Map[Char, Int] =
+      acc + (c -> (acc.getOrElse(c, 0) + 1))
+    val sFreq = s.foldLeft(Map[Char, Int]())(charFreq)
+    val tFreq = t.foldLeft(Map[Char, Int]())(charFreq)
+    tFreq.collectFirst {
+      case (c, freq) if sFreq.getOrElse(c, -1) != freq => c
+    }.getOrElse(sys.error(s"$s and $t are identical strings"))
   }
 
   private[this] def buildFreqMap(acc: Map[Char, IndexFreq], charPair: (Char, Int)): Map[Char, IndexFreq] =
