@@ -196,7 +196,7 @@ class TestEasy extends FunSpec {
     }
 
     it("should work for a range of numbers") {
-      assert((0 to 10).map(Easy.fib) == List(0, 1, 1,	2, 3, 5, 8, 13, 21, 34, 55))
+      assert((0 to 10).map(Easy.fib) == List(0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55))
     }
   }
 
@@ -314,6 +314,21 @@ class TestEasy extends FunSpec {
 
     it("should work for edge cases") {
       assert(Easy.findTheDifference("s", "ss") == 's')
+    }
+  }
+
+  describe("Easy::isHappy") {
+
+    it("should evaluate to true for n = 1") {
+      assert(Easy.isHappy(1))
+    }
+
+    it("should evaluate to false for n = 0") {
+      assert(!Easy.isHappy(0))
+    }
+
+    it("should evaluate to true for n = 19") {
+      assert(Easy.isHappy(19))
     }
   }
 }

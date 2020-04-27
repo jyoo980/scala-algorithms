@@ -1,4 +1,5 @@
 import scala.annotation.tailrec
+import scala.collection.immutable.ListMap
 
 object Easy {
 
@@ -220,6 +221,20 @@ object Easy {
     tFreq.collectFirst {
       case (c, freq) if sFreq.getOrElse(c, -1) != freq => c
     }.getOrElse(sys.error(s"$s and $t are identical strings"))
+  }
+
+  // https://leetcode.com/problems/happy-number/
+  def isHappy(n: Int): Boolean = {
+    @tailrec
+    def rec(n: Int, visited: List[Int]): Boolean = {
+      if (n == 1) true
+      else if (visited.contains(n)) false
+      else {
+        val next = n.toString.map(num => num.asDigit * num.asDigit).sum
+        rec(next, visited :+ n)
+      }
+    }
+    rec(n, Nil)
   }
 
   private[this] def buildFreqMap(acc: Map[Char, IndexFreq], charPair: (Char, Int)): Map[Char, IndexFreq] =
