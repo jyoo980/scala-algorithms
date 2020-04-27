@@ -331,4 +331,23 @@ class TestEasy extends FunSpec {
       assert(Easy.isHappy(19))
     }
   }
+
+  describe("Easy::hasAlternatingBits") {
+
+    it("should evaluate to true for n = 0") {
+      assert(Easy.hasAlternatingBits(0))
+    }
+
+    it("should evaluate to true for n = 1") {
+      assert(Easy.hasAlternatingBits(1))
+    }
+
+    it("should evaluate to true for n = 5") {
+      assert(Easy.hasAlternatingBits(5))
+    }
+
+    it("should evaluate to false for n = 3") {
+      assert(!Easy.hasAlternatingBits(3))
+    }
+  }
 }

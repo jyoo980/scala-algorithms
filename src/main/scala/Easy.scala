@@ -237,6 +237,18 @@ object Easy {
     rec(n, Nil)
   }
 
+  // https://leetcode.com/problems/binary-number-with-alternating-bits/
+  def hasAlternatingBits(n: Int): Boolean = {
+    @tailrec
+    def rec(bits: List[Int], prevBit: Int): Boolean = bits match {
+      case Nil => true
+      case h :: t =>
+        if (h == prevBit) false
+        else rec(t, h)
+    }
+    rec(n.toBinaryString.map(_.asDigit).toList, -1)
+  }
+
   private[this] def buildFreqMap(acc: Map[Char, IndexFreq], charPair: (Char, Int)): Map[Char, IndexFreq] =
     charPair match {
       case (c, i) =>
