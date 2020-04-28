@@ -71,4 +71,15 @@ class TestMedium extends FunSpec {
       assert(Medium.getKth(7, 11, 4) == 7)
     }
   }
+
+  describe("Medium::findKthLargest") {
+
+    it("should work for a simple case") {
+      assert(Medium.findKthLargest(Array(3, 2, 1, 5, 6, 4), 2) == 5)
+    }
+
+    it("should work for a larger case") {
+      assert(Medium.findKthLargest(Array(3, 2, 3, 1, 2, 4, 5, 5, 6), 4) == 4)
+    }
+  }
 }

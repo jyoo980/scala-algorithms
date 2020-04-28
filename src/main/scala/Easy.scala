@@ -249,6 +249,16 @@ object Easy {
     rec(n.toBinaryString.map(_.asDigit).toList, -1)
   }
 
+  // https://leetcode.com/problems/find-common-characters/
+  def commonChars(A: Array[String]): List[String] = {
+    // TODO
+    List()
+  }
+
+  // https://leetcode.com/problems/kth-largest-element-in-an-array/
+  def findKthLargest(nums: Array[Int], k: Int): Int =
+    nums.sorted.toList(nums.length - k)
+
   private[this] def buildFreqMap(acc: Map[Char, IndexFreq], charPair: (Char, Int)): Map[Char, IndexFreq] =
     charPair match {
       case (c, i) =>

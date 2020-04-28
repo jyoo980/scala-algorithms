@@ -6,7 +6,7 @@ object Medium {
   def groupAnagrams(strs: Array[String]): List[List[String]] = {
     type StringMap = Map[Char, Int]
     strs.foldLeft(Map[StringMap, List[String]]()) { (acc, word) =>
-      val strMap = this.stringMap(word)
+      val strMap = Common.stringMap(word)
       acc + (strMap -> (acc.getOrElse(strMap, List[String]()) :+ word))
     }.values.toList
   }
@@ -30,7 +30,7 @@ object Medium {
 
   // https://leetcode.com/problems/sort-characters-by-frequency/
   def frequencySort(s: String): String =
-    stringMap(s).toList.sortBy {
+    Common.stringMap(s).toList.sortBy {
       case (_, freq) => freq
     }(Ordering[Int].reverse).flatMap {
       case (c, freq) => (1 to freq).map(_ => c)
@@ -67,9 +67,7 @@ object Medium {
       }.take(k)
   }
 
-  private[this] def stringMap(s: String): Map[Char, Int] = {
-    s.foldLeft(Map[Char, Int]()) { (acc, c) =>
-      acc + (c -> (acc.getOrElse(c, 0) + 1))
-    }
-  }
+  // https://leetcode.com/problems/kth-largest-element-in-an-array/
+  def findKthLargest(nums: Array[Int], k: Int): Int =
+    nums.sorted.toList(k - 1)
 }
